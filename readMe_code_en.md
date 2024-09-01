@@ -1,5 +1,19 @@
 ### Project Overview
 
+
+Before getting started:
+
+To run the program, you need MATLAB + YALMIP + CPLEX.
+Run `main` in `optimal_bidding_control` to obtain the most basic results.
+If the MATLAB version is too high and may cause crashes, you need to use Gurobi. Change:
+```matlab
+ops = sdpsettings('debug',0,'solver','cplex','savesolveroutput',1,'savesolverinput',1);
+```
+to:
+```matlab
+ops = sdpsettings('debug',0,'solver','gurobi','savesolveroutput',1,'savesolverinput',1);
+```
+
 #### Data Preparation (data_prepare)
 - `07 2020.xlsx`: RegD signal for PJM in July 2020.
 - `rt_hrl_lmps.xlsx`: PJM market data: Real-time hourly nodal prices (from PJM official website).

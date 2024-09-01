@@ -1,5 +1,18 @@
 ### 项目说明
 
+**开始之前:**
+
+为了运行程序，您需要安装 MATLAB + YALMIP + CPLEX。
+在 `co-optimizing_bid_power-allocation` 文件夹中运行 `main` 即可获得最基础的结果。
+如果 MATLAB 版本过高可能导致崩溃，您需要使用 Gurobi。请将以下代码修改为：
+```matlab
+ops = sdpsettings('debug',0,'solver','cplex','savesolveroutput',1,'savesolverinput',1);
+```
+改为：
+```matlab
+ops = sdpsettings('debug',0,'solver','gurobi','savesolveroutput',1,'savesolverinput',1);
+```
+
 #### 数据准备（data_prepare）
 - `07 2020.xlsx`：PJM 2020年7月的 RegD 信号。
 - `rt_hrl_lmps.xlsx`：PJM 市场数据：实时逐小时节点电价（来自 PJM 官网）。
