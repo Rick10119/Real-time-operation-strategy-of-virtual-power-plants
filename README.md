@@ -1,5 +1,7 @@
 ![image](https://github.com/user-attachments/assets/c2716e8c-5b6b-4225-93b9-c2229702c389)
 
+video: https://www.bilibili.com/video/BV1CpQDYDE67/?vd_source=18e4b7b95b505bbe9bf571ca4ff73d55
+
 # chen_lyu_real-time_2024_apen
 ### Project Overview
 
