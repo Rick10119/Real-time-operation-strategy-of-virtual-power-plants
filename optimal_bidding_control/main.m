@@ -8,7 +8,8 @@ result = {};
 
 % Default data for the 21st day
 day_price = 21;
-load("../data_prepare/param_day_" + day_price + ".mat");
+% load the parameters for the 21st day (compatible with mac)
+load(fullfile("..", "data_prepare", "param_day_" + day_price + ".mat"));
 
 % Update step size
 NOFTCAP_bid = 900;
@@ -52,4 +53,4 @@ result.actualProfit =  param.price_reg(:, 1) .* result.Bid_R_rev * param.s_perf 
 % Multiply by the time slot length
 result.actualProfit =  result.actualProfit * delta_t;
 
-save("../results/result_optimal_bid_ctrl_sep_.mat", "result");
+save(fullfile("..", "results", "result_optimal_bid_ctrl_sep_.mat"), "result");

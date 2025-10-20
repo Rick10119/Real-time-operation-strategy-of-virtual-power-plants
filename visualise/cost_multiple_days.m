@@ -19,7 +19,7 @@ resource_name = temp(resource_idx);
 
 for day_price = 15 : 28
 
-load("../results/result_prop_ctrl_sep_" + resource_name + day_price + ".mat", "result");
+load(fullfile("..", "results", "result_prop_ctrl_sep_" + resource_name + day_price + ".mat"), "result");
 
 EnergyFee_comp = [EnergyFee_comp, result.actualEnegyFee];
 Profit_comp = [Profit_comp, result.actualProfit];
@@ -41,7 +41,7 @@ temp = ["pv", "es", "ev", "tcl", "ipp", ""];
 resource_name = temp(resource_idx);
 
 for day_price = 15 : 28
-load("../results/result_tx_optimal_bid_ctrl_sep_" + resource_name + day_price + ".mat", "result");
+load(fullfile("..", "results", "result_tx_greedy_bid_ctrl_sep_" + resource_name + day_price + ".mat"), "result");
 EnergyFee_comp = [EnergyFee_comp, result.actualEnegyFee];
 Profit_comp = [Profit_comp, result.actualProfit];
 Cost_comp = [Cost_comp, result.actualCost];
@@ -62,7 +62,7 @@ temp = ["pv", "es", "ev", "tcl", "ipp", ""];
 resource_name = temp(resource_idx);
 
 for day_price = 15 : 28
-load("../results/result_optimal_bid_ctrl_sep_" + resource_name + day_price + ".mat", "result");
+load(fullfile("..", "results", "result_optimal_bid_ctrl_sep_" + resource_name + day_price + ".mat"), "result");
 EnergyFee_comp = [EnergyFee_comp, result.actualEnegyFee];
 Profit_comp = [Profit_comp, result.actualProfit];
 Cost_comp = [Cost_comp, result.actualCost];

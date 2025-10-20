@@ -2,7 +2,9 @@
 
 %% Parameter processing
 % Shadow prices of each resource state
-lambda = sol.solveroutput.lambda.eqlin(1 : NOFDER);
+% Lagrange multipliers
+pi = - sol.solveroutput.result.pi; % Negative for Gurobi
+lambda = pi(1 : NOFDER);
 
 % Current time slot number CUR_SLOT
 CUR_SLOT = ceil(t_cap / 1800); % 2 seconds each, rounded up when divided by 1800, for the current time slot number

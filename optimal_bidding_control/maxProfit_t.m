@@ -136,7 +136,7 @@ Constraints = [Constraints, P_dis(param.index_none_reg, :, :) == repmat(P_dis(pa
 Constraints = [Constraints, P_ch(param.index_none_reg, :, :) == repmat(P_ch(param.index_none_reg, :, 1), 1, 1, NOFSCEN)];
 
 %% Solve the optimization problem
-ops = sdpsettings('debug', 1, 'solver', 'cplex', 'savesolveroutput', 1, 'savesolverinput', 1);
+ops = sdpsettings('debug',0,'solver','gurobi','savesolveroutput',1,'savesolverinput',1,'verbose', 0);
 
 sol = optimize(Constraints, -Profit, ops);
 

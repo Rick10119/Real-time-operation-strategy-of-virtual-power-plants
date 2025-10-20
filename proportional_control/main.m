@@ -1,53 +1,53 @@
-%% Ö÷³ÌÐò
+%% ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 clc;clear;
-% ´æ´¢½á¹û
+% ï¿½æ´¢ï¿½ï¿½ï¿½
 yalmip("clear");
 result = {};
 
-%% ²ÎÊý¶ÁÈ¡
+%% ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡
 
-% Ä¬ÈÏ21ÈÕÊý¾Ý
+% Ä¬ï¿½ï¿½21ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 day_price = 21;
-load("../data_prepare/param_day_" + day_price + ".mat")
+load(fullfile("..", "data_prepare", "param_day_" + day_price + ".mat"))
 
-% ¸üÐÂ²½³¤
+% ï¿½ï¿½ï¿½Â²ï¿½ï¿½ï¿½
 NOFTCAP_bid = 900;
 NOFTCAP_ctrl = 30;
-result.P_alloc = [];% ÓÃÓÚ¼ÇÂ¼½á¹û
+result.P_alloc = [];% ï¿½ï¿½ï¿½Ú¼ï¿½Â¼ï¿½ï¿½ï¿½
 result.actualMil = zeros(NOFSLOTS, 1);
 result.actualEnergy = zeros(NOFSLOTS, 1);
 result.actualCost = zeros(NOFSLOTS, 1);
 
-%% ³õÊ¼Ê±¶Î
+%% ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 warning('off')
 maxProfit_1;
 
-%% ÖÐ¼äÊ±¶Î
+%% ï¿½Ð¼ï¿½Ê±ï¿½ï¿½
 for t_cap = 1 : (NOFSLOTS - 1) * 1800
-    if mod(t_cap, NOFTCAP_bid) == 1 % Ê±¶Î³õ»òÖÐ¼ä³õ£¬¸üÐÂ³Ë×Ó²¢·ÖÅä¹¦ÂÊ£¬µ«²»¸üÐÂµ±Ç°Ê±¶ÎÍ¶±ê
-        delta_t_rest = delta_t - mod(t_cap - 1, 1800) / 1800;% µ±Ç°Ê±¶ÎÊ£ÓàÊ±¼ä
+    if mod(t_cap, NOFTCAP_bid) == 1 % Ê±ï¿½Î³ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â³ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½ä¹¦ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ç°Ê±ï¿½ï¿½Í¶ï¿½ï¿½
+        delta_t_rest = delta_t - mod(t_cap - 1, 1800) / 1800;% ï¿½ï¿½Ç°Ê±ï¿½ï¿½Ê£ï¿½ï¿½Ê±ï¿½ï¿½
         maxProfit_t;
     end
-    if  mod(t_cap, NOFTCAP_ctrl) == 1 % ·ÖÅä¹¦ÂÊ£¬µ«²»¸üÐÂµ±Ç°Ê±¶ÎÍ¶±ê
-        fastControl_implement;% ¹¦ÂÊ·ÖÅä
+    if  mod(t_cap, NOFTCAP_ctrl) == 1 % ï¿½ï¿½ï¿½ä¹¦ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ç°Ê±ï¿½ï¿½Í¶ï¿½ï¿½
+        fastControl_implement;% ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½
     end
 
 end
 
-% ×îºóÒ»¸öÊ±¶Î£¬²»ÓÃÔÙÍ¶±ê
+% ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½
 for t_cap = (NOFSLOTS - 1) * 1800 + 1 : NOFSLOTS * 1800 - 1
-    if mod(t_cap, NOFTCAP_ctrl) == 1 % Ê±¶Î³õ»òÖÐ¼ä³õ£¬·ÖÅä¹¦ÂÊ
-        fastControl_implement;% ¹¦ÂÊ·ÖÅä
+    if mod(t_cap, NOFTCAP_ctrl) == 1 % Ê±ï¿½Î³ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¹¦ï¿½ï¿½
+        fastControl_implement;% ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½
     end
 end
 
-%% ÊÐ³¡ÊÕÒæ
+%% ï¿½Ð³ï¿½ï¿½ï¿½ï¿½ï¿½
 result.actualEnegyFee = param.price_e .* result.actualEnergy;
 result.actualProfit =  param.price_reg(:, 1) .* result.Bid_R_rev * param.s_perf + ...
     (param.price_reg(:, 2) .* result.actualMil) * param.s_perf;
-% ³ËÒÔÊ±¶Î³¤¶È
+% ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Î³ï¿½ï¿½ï¿½
 result.actualProfit =  result.actualProfit * delta_t;
 
-save("../results/result_prop_ctrl_sep_.mat", "result");
+save(fullfile("..", "results", "result_prop_ctrl_sep_.mat"), "result");
 
 % main_seperate;

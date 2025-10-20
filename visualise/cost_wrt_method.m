@@ -9,7 +9,7 @@ Bid_P_comp = [];
 Bid_R_comp = [];
 actualEnergy_comp = [];
 P_unbal_comp = [];
-load("../data_prepare/param_day_21.mat")
+load(fullfile("..", "data_prepare", "param_day_21.mat"))
 
 % Proportional allocation
 for resource_idx = 1 : 6 % Total of 6 resources
@@ -18,7 +18,7 @@ for resource_idx = 1 : 6 % Total of 6 resources
     temp = ["pv", "es", "ev", "tcl", "ipp", ""];
     resource_name = temp(resource_idx);
 
-    load("../results/result_prop_ctrl_sep_" + resource_name + ".mat", "result");
+    load(fullfile("..", "results", "result_prop_ctrl_sep_" + resource_name + ".mat"), "result");
 
     EnergyFee_comp = [EnergyFee_comp, result.actualEnegyFee];
     Profit_comp = [Profit_comp, result.actualProfit];
@@ -36,7 +36,7 @@ for resource_idx = 1 : 6 % Total of 6 resources
     temp = ["pv", "es", "ev", "tcl", "ipp", ""];
     resource_name = temp(resource_idx);
 
-    load("../results/result_tx_optimal_bid_ctrl_sep_" + resource_name + ".mat", "result");
+    load(fullfile("..", "results", "result_tx_greedy_bid_ctrl_sep_" + resource_name + ".mat"), "result");
 
     EnergyFee_comp = [EnergyFee_comp, result.actualEnegyFee];
     Profit_comp = [Profit_comp, result.actualProfit];
@@ -54,7 +54,7 @@ for resource_idx = 1 : 6 % Total of 6 resources
     temp = ["pv", "es", "ev", "tcl", "ipp", ""];
     resource_name = temp(resource_idx);
 
-    load("../results/result_optimal_bid_ctrl_sep_" + resource_name + ".mat", "result");
+    load(fullfile("..", "results", "result_optimal_bid_ctrl_sep_" + resource_name + ".mat"), "result");
 
     EnergyFee_comp = [EnergyFee_comp, result.actualEnegyFee];
     Profit_comp = [Profit_comp, result.actualProfit];
